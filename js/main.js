@@ -56,7 +56,7 @@ var app = {
 		this.store = new LocalStorageStore(function() {
 			$('body').html(new HomeView(self.store).render().el);
 		});
-		this.registerEvents();
+		self.registerEvents();
 	}
 	
 };
