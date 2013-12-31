@@ -1,11 +1,20 @@
 var app = {
 
-    findByName: function() {
+/*    
+	findByName: function() {
 		var self = this;	
         this.store.findByName($('.search-key').val(), function(employees) {
 			$('.employee-list').html(self.employeeLiTpl(employees));
         });
     },
+	
+	
+	renderHomeView: function() {
+		$('body').html(this.homeTpl());
+		$('.search-key').on('keyup', $.proxy(this.findByName, this));
+	},
+	
+*/	
 	
 	
 	showAlert: function (message, title) {
@@ -17,20 +26,13 @@ var app = {
 	},
 		
 		
-	renderHomeView: function() {
-		$('body').html(this.homeTpl());
-		$('.search-key').on('keyup', $.proxy(this.findByName, this));
-	},
 	
 	
 	initialize: function() {
-		
-		this.homeTpl = Handlebars.compile($("#home-tpl").html());
-		this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
-		
+				
 		var self = this;
 		this.store = new LocalStorageStore(function() {
-			self.renderHomeView();
+			$('body').html(new HomeView(self.store).render().el);
 		});
 	}
 	
